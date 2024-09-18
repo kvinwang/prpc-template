@@ -1,0 +1,8 @@
+[template]
+exclude = ["cargo-generate.toml", "hooks"]
+[hooks]
+post = ["hooks/post-gen.rhai"]
+
+[placeholders]
+app_name = { prompt = "Enter the app name", type = "string" }
+
