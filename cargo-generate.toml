@@ -1,0 +1,8 @@
+[template]
+exclude = ["cargo-generate.toml", "hooks"]
+[hooks]
+post = ["hooks/post-gen.rhai"]
+
+[placeholders]
+service_name = { prompt = "Enter the service name", type = "string" }
+
