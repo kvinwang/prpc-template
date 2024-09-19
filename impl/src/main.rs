@@ -7,8 +7,8 @@ mod web_routes;
 
 #[rocket::main]
 async fn main() -> Result<()> {
+    let figment = config::load_config_figment();
     let state = main_service::AppState::new();
-    let figment = Figment::from(rocket::Config::default()).merge(config::load_config_file());
     let rocket = rocket::custom(figment)
         .mount("/", web_routes::routes())
         .manage(state);
