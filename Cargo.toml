@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-ra-rpc = { version = "0.1.0", path = "../ra-rpc" }
-{{app_name}}-rpc = { version = "0.1.0", path = "../{{app_name}}-rpc" }
+ra-rpc = { version = "0.1.0" }
+{{app_name}}-rpc = { version = "0.1.0", path = "./rpc" }
 rocket = { git = "https://github.com/rwf2/Rocket", branch = "master", features = ["mtls"] }
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
