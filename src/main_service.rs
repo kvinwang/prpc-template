@@ -1,8 +1,8 @@
 use anyhow::Result;
-use ra_rpc::{Attestation, RpcCall};
-use std::sync::{Arc, Mutex, MutexGuard};
 use {{app_name}}_rpc::{{app_name}}_server::{ {{- app_name | capitalize }}Rpc, {{app_name | capitalize}}Server};
 use {{app_name}}_rpc::HelloResponse;
+use ra_rpc::{Attestation, RpcCall};
+use std::sync::{Arc, Mutex, MutexGuard};
 
 use crate::config::AppConfig;
 
