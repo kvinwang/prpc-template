@@ -3,8 +3,12 @@ name = "{{app_name}}"
 version = "0.1.0"
 edition = "2021"
 
+[profile.release]
+panic = "abort"
+
 [dependencies]
-ra-rpc = { version = "0.1.0" }
+serde = { version = "1", features = ["derive"] }
+ra-rpc = { version = "0.1.0", path = "../dstack/ra-rpc" }
 {{app_name}}-rpc = { version = "0.1.0", path = "./rpc" }
 rocket = { git = "https://github.com/rwf2/Rocket", branch = "master", features = ["mtls"] }
 tracing = "0.1.40"

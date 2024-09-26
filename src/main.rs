@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{anyhow, Context, Result};
 use tracing::info;
 
 mod config;
@@ -16,7 +16,10 @@ async fn main() -> Result<()> {
     }
 
     let figment = config::load_config_figment();
-    let state = main_service::AppState::new();
+    let config = figment
+        .extract::<config::AppConfig>()
+        .context("Failed to load config")?;
+    let state = main_service::AppState::new(config);
     let rocket = rocket::custom(figment)
         .mount("/", web_routes::routes())
         .manage(state);

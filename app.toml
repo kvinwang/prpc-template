@@ -5,6 +5,7 @@ ident = "{{app_name | capitalize}} Server"
 temp_dir = "/tmp"
 keep_alive = 10
 log_level = "debug"
+rpc_reply = "42"
 
 [default.limits]
 bytes = "8KiB"

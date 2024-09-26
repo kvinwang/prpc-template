@@ -26,17 +26,9 @@ async fn prpc_post(
     content_type: Option<&ContentType>,
     json: bool,
 ) -> Result<Custom<Vec<u8>>, String> {
-    handle_prpc::<_, RpcHandler>(
-        &*state,
-        cert,
-        method,
-        Some(data),
-        limits,
-        content_type,
-        json,
-    )
-    .await
-    .map_err(|e| format!("Failed to handle PRPC request: {e}"))
+    handle_prpc::<_, RpcHandler>(state, cert, method, Some(data), limits, content_type, json)
+        .await
+        .map_err(|e| format!("Failed to handle PRPC request: {e}"))
 }
 
 #[get("/prpc/<method>")]
@@ -47,7 +39,7 @@ async fn prpc_get(
     limits: &Limits,
     content_type: Option<&ContentType>,
 ) -> Result<Custom<Vec<u8>>, String> {
-    handle_prpc::<_, RpcHandler>(&*state, cert, method, None, limits, content_type, true)
+    handle_prpc::<_, RpcHandler>(state, cert, method, None, limits, content_type, true)
         .await
         .map_err(|e| format!("Failed to handle PRPC request: {e}"))
 }

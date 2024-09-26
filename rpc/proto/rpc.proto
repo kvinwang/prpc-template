@@ -6,5 +6,9 @@ package {{app_name}};
 
 service {{app_name | capitalize}} {
   // Example request
-  rpc HandleRequest(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Hello(google.protobuf.Empty) returns (HelloResponse) {}
+}
+
+message HelloResponse {
+  string message = 1;
 }
