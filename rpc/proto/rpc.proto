@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-package {{app_name}};
+package {{app_name | snake}};
 
-service {{app_name | capitalize}} {
+service {{type_name}} {
   // Example request
   rpc Hello(google.protobuf.Empty) returns (HelloResponse) {}
 }

@@ -1,6 +1,6 @@
 use anyhow::Result;
-use {{app_name}}_rpc::{{app_name}}_server::{ {{- app_name | capitalize }}Rpc, {{app_name | capitalize}}Server};
-use {{app_name}}_rpc::HelloResponse;
+use {{app_name | snake}}_rpc::{{type_name | snake}}_server::{ {{- type_name }}Rpc, {{type_name}}Server};
+use {{app_name | snake}}_rpc::HelloResponse;
 use ra_rpc::{Attestation, RpcCall};
 use std::sync::{Arc, Mutex, MutexGuard};
 
@@ -32,7 +32,7 @@ pub struct RpcHandler {
     state: AppState,
 }
 
-impl {{app_name | capitalize}}Rpc for RpcHandler {
+impl {{type_name | capitalize}}Rpc for RpcHandler {
     async fn hello(self) -> Result<HelloResponse> {
         Ok(HelloResponse {
             message: self.state.lock().config.rpc_reply.clone(),
@@ -41,10 +41,10 @@ impl {{app_name | capitalize}}Rpc for RpcHandler {
 }
 
 impl RpcCall<AppState> for RpcHandler {
-    type PrpcService = {{app_name | capitalize}}Server<Self>;
+    type PrpcService = {{type_name | capitalize}}Server<Self>;
 
     fn into_prpc_service(self) -> Self::PrpcService {
-        {{app_name | capitalize}}Server::new(self)
+        {{type_name | capitalize}}Server::new(self)
     }
 
     fn construct(state: &AppState, attestation: Option<Attestation>) -> Result<Self>
@@ -59,5 +59,5 @@ impl RpcCall<AppState> for RpcHandler {
 }
 
 pub fn rpc_methods() -> &'static [&'static str] {
-    <{{app_name | capitalize}}Server<RpcHandler>>::supported_methods()
+    <{{type_name | capitalize}}Server<RpcHandler>>::supported_methods()
 }

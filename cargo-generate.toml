@@ -5,4 +5,5 @@ post = ["hooks/post-gen.rhai"]
 
 [placeholders]
 app_name = { prompt = "Enter the app name", type = "string" }
+type_name = { prompt = "Enter the server type name", type = "string" }
 
